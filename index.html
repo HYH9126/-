@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			body,h1,h2,h3,h4,h5,h6,dl,dt,dd,p,ul,li{margin:0;padding:0;}
+			body{font-size:12px;font-family:"微软雅黑";}
+			ol,ul,li{list-style:none;}
+			a{text-decoration:none; color:black;display: block;}
+			span,p{display: block;}
+			img{border:0;display: block;}
+			input select{padding:0;border:0;margin:0;}
+			.clear:after{content:".";clear:both;display:block;height:0;overflow:hidden;visibility:hidden;}
+			
+			#box{
+				width: 600px;
+				height: 600px;
+				float: left;
+				position: relative;
+			}
+			#box div{
+				width: 50px;
+				height: 50px;
+				background-image: url(img/1.png);
+				position: absolute;
+			}
+			#box div p{
+				width: 50px;
+				height: 50px;
+			}
+			#box1{
+				width: 600px;
+				height: 600px;
+				float: left;
+				position: relative;
+				margin-left: 50px;
+			}
+			#box1 div{
+				width: 50px;
+				height: 50px;
+				background-image: url(img/1.png);
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="box1"></div>
+	</body>
+	<script>
+		var box = document.getElementById('box');
+		var str = '';
+		var arrbg1 = ['red','yellow','blue','green']
+		for(var i=0;i<100;i++){
+			str += '<div style="top:'+Math.floor(i/10)*60+'px;left:'+i%10*60+'px;background-position-x:-'+i%10*50+'px;background-position-y:-'+Math.floor(i/10)*50+'px;"><p style="display:block;background:'+arrbg1[i%4]+';"></p></div>';
+			box.innerHTML = str;
+		}
+		var con = box.getElementsByTagName('div');
+		var zhezhao = document.getElementsByTagName('p');
+		var str1 = '';
+		var n = 0;
+		for(var i=0;i<100;i++){
+			con[i].index = i;
+			con[i].index1 = 0;
+			con[i].onmouseover = function(){
+				zhezhao[this.index].style.display = 'none';
+			}
+			con[i].onclick = function(){
+				if(this.index1==0){
+					str1 += '<div style="top:'+Math.floor(n/10)*60+'px;left:'+n%10*60+'px;background-position-x:-'+this.index%10*50+'px;background-position-y:-'+Math.floor(this.index/10)*50+'px;"></div>';
+					box1.innerHTML = str1;
+					n++;
+					this.index1 = 1;
+				}
+			}
+		}
+	</script>
+</html>
